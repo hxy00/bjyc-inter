@@ -1,5 +1,8 @@
 package com.bjyc.inter.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class HttpRequest {
+    static Logger logger = LoggerFactory.getLogger(HttpRequest.class);
 
     /**
      * 向指定URL发送GET方法的请求
@@ -37,7 +41,7 @@ public class HttpRequest {
             Map<String, List<String>> map = connection.getHeaderFields();
             // 遍历所有的响应头字段
             for (String key : map.keySet()) {
-                System.out.println(key + "--->" + map.get(key));
+                logger.info("key={}, value={}", key, map.get(key));
             }
             // 定义 BufferedReader输入流来读取URL的响应
             in = new BufferedReader(new InputStreamReader(
@@ -48,6 +52,7 @@ public class HttpRequest {
             }
         } catch (Exception e) {
             System.out.println("发送GET请求出现异常！" + e);
+            logger.error("发送GET请求出现异常！" + e.getMessage());
             e.printStackTrace();
         }
         // 使用finally块来关闭输入流
