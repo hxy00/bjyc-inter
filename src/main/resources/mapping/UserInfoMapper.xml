@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjyc.inter.dao.IUserInfoMapper">
+
+    <sql id="select_all_column">
+        SELECT t.id, t.nickName, t.avatarUrl, t.gender, t.country, t.province, t.city, t.lang, t.createAt, t.openId FROM
+        tbl_user_info t
+    </sql>
+
+    <sql id="where_column">
+        <if test="userInfoDto.id != null">
+            and t.id = #{userInfoDto.id}
+        </if>
+        <if test="userInfoDto.nickName != null and userInfoDto.nickName != ''">
+            and t.nickName = #{userInfoDto.nickName}
+        </if>
+        <if test="userInfoDto.openId != null and userInfoDto.openId != ''">
+            and t.openId = #{userInfoDto.openId}
+        </if>
+    </sql>
+
+    <select id="getListMap" parameterType="com.bjyc.inter.pojo.dto.UserInfoDto" resultType="Map">
+        <include refid="select_all_column"/>
+        <where>
+            <include refid="where_column"/>
+        </where>
+    </select>
+
+    <insert id="saveUserInfo" parameterType="com.bjyc.inter.pojo.dto.UserInfoDto">
+        insert into tbl_user_info(nickName, avatarUrl, gender, country, province, city, createAt, lang, openId)
+        values (#{userInfoDto.nickName}, #{userInfoDto.avatarUrl}, #{userInfoDto.gender}, #{userInfoDto.country},
+        #{userInfoDto.province}, #{userInfoDto.city}, now(), #{userInfoDto.lang}, #{userInfoDto.openId})
+    </insert>
+
+</mapper>

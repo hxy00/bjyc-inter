@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjyc.inter.dao.IOriginAndDestMapper">
+
+    <sql id="select_all_column">
+        SELECT * FROM
+        tbl_origin_and_dest t
+    </sql>
+
+    <sql id="where_column">
+        <if test="originAndDestDto.id != null">
+            and t.id = #{originAndDestDto.id}
+        </if>
+        <if test="originAndDestDto.uid != null and originAndDestDto.uid != ''">
+            and t.uid = #{originAndDestDto.uid}
+        </if>
+    </sql>
+
+    <select id="getListMap" parameterType="com.bjyc.inter.pojo.dto.OriginAndDestDto" resultType="Map">
+        <include refid="select_all_column"/>
+        <where>
+            <include refid="where_column"/>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.bjyc.inter.pojo.dto.OriginAndDestDto">
+        insert into tbl_origin_and_dest(uid, origin, destination, createAt, isDefault)
+        values (#{originAndDestDto.uid}, #{originAndDestDto.origin}, #{originAndDestDto.destination}, now(),
+        #{originAndDestDto.isDefault})
+    </insert>
+
+    <delete id="delete" parameterType="com.bjyc.inter.pojo.dto.OriginAndDestDto">
+        delete from tbl_origin_and_dest where 1 = 1
+        <if test="originAndDestDto.id != null">
+            and t.id = #{originAndDestDto.id}
+        </if>
+        <if test="originAndDestDto.openId != null and originAndDestDto.openId != ''">
+            and t.id = #{originAndDestDto.openId}
+        </if>
+    </delete>
+
+</mapper>
