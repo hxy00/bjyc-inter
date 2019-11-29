@@ -21,6 +21,8 @@ import java.util.Map;
 public class OriginAndDestController {
     Logger logger = LoggerFactory.getLogger(getClass());
 
+    private final int SAVE_COUNTS = 5; // 限制最多只能保存5条数据
+
     @Autowired
     private IOriginAndDestSv iOriginAndDestSv;
 
@@ -51,7 +53,7 @@ public class OriginAndDestController {
 
         try {
             List<Map<String, Object>> lstData = iOriginAndDestSv.getOriginAndDestList(originAndDestDto);
-            if(!CollectionUtils.isEmpty(lstData) && lstData.size() > 5) {
+            if(!CollectionUtils.isEmpty(lstData) && lstData.size() >= SAVE_COUNTS) {
                 return new ReturnObject(ReturnObject.SuccessEnum.fail, "保存数据失败：该数据最多能保存5条", 0, 1);
             }
             int saveInt = iOriginAndDestSv.save(originAndDestDto);
