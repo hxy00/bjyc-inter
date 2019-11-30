@@ -71,11 +71,8 @@ public class OriginAndDestController {
         if(null == originAndDestDto) {
             return new ReturnObject(ReturnObject.SuccessEnum.fail, "删除数据失败：参数为空[object]", 0, 1);
         }
-        if (null == originAndDestDto.getId()) {
-            return new ReturnObject(ReturnObject.SuccessEnum.fail, "保存数据失败：参数为空[uid]", 0, 1);
-        }
-        if(StringUtil.isEmpty(originAndDestDto.getUid())){
-            return new ReturnObject(ReturnObject.SuccessEnum.fail, "保存数据失败：参数为空[openId]", 0, 1);
+        if (null == originAndDestDto.getId() && StringUtil.isEmpty(originAndDestDto.getUid())) {
+            return new ReturnObject(ReturnObject.SuccessEnum.fail, "保存数据失败：参数为空[uid]或[openId]", 0, 1);
         }
         int retInt = 0;
         try {

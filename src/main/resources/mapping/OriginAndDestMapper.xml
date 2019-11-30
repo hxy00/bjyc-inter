@@ -30,13 +30,15 @@
     </insert>
 
     <delete id="delete" parameterType="com.bjyc.inter.pojo.dto.OriginAndDestDto">
-        delete from tbl_origin_and_dest where 1 = 1
-        <if test="originAndDestDto.id != null">
-            and t.id = #{originAndDestDto.id}
-        </if>
-        <if test="originAndDestDto.openId != null and originAndDestDto.openId != ''">
-            and t.id = #{originAndDestDto.openId}
-        </if>
+        delete from tbl_origin_and_dest
+        <where>
+            <if test="originAndDestDto.id != null">
+                and id = #{originAndDestDto.id}
+            </if>
+            <if test="originAndDestDto.uid != null and originAndDestDto.uid != ''">
+                and uid = #{originAndDestDto.openId}
+            </if>
+        </where>
     </delete>
 
 </mapper>
