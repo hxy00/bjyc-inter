@@ -91,4 +91,22 @@ public class HttpBase {
         }
         return null;
     }
+
+    /**
+     * http get返回ReturnObject
+     * @param url
+     * @param request
+     * @param responseType
+     * @return
+     */
+    protected <T> T getExecute(String url, Object request, Class<T> responseType) throws Exception {
+        try {
+            String responseStr = restTemplate.getForObject(url, String.class, JSONObject.toJSONString(request));
+            JSONObject json = JSONObject.parseObject(responseStr);
+            return JSONObject.toJavaObject(json, responseType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

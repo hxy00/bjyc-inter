@@ -2,7 +2,6 @@ package com.bjyc.inter.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.bjyc.inter.pojo.dto.ReturnObject;
-import com.bjyc.inter.util.http.HttpBase;
 import com.bjyc.inter.util.http.HttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/fuli", produces = "application/json; charset=UTF-8")
-public class FuLiController extends HttpBase {
+public class FuLiController {
     Logger logger = LoggerFactory.getLogger(getClass());
     private static final String REQ_URL = "https://gank.io/api/data/%E7%A6%8F%E5%88%A9";
     private static final int PAGE_SIZE = 10;
