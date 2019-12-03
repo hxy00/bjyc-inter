@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjyc.inter.dao.IPublishInfoMapper">
+
+    <sql id="select_all_column">
+        SELECT t.*, u.nickName, u.avatarUrl FROM  tbl_publish_info t left join tbl_user_info u on t.uId = u.openId
+    </sql>
+
+    <sql id="where_column">
+        <if test="publishInfoDto.id != null">
+            and t.id = #{publishInfoDto.id}
+        </if>
+        <if test="publishInfoDto.title != null and publishInfoDto.title != ''">
+            and t.title = #{publishInfoDto.title}
+        </if>
+        <if test="publishInfoDto.uId != null and publishInfoDto.uId != ''">
+            and t.uId = #{publishInfoDto.uId}
+        </if>
+    </sql>
+
+    <select id="getListMap" parameterType="com.bjyc.inter.pojo.dto.PublishInfoDto" resultType="Map">
+        <include refid="select_all_column"/>
+        <where>
+            <include refid="where_column"/>
+        </where>
+        order by t.createdAt desc
+    </select>
+
+    <insert id="save" parameterType="com.bjyc.inter.pojo.dto.PublishInfoDto">
+        insert into tbl_publish_info(createdAt, publishedAt, cellPhone, title, content, uId, isValid, direction, goTime)
+        values (NOW(), #{publishInfoDto.publishedAt}, #{publishInfoDto.cellPhone}, #{publishInfoDto.title}, #{publishInfoDto.content}, #{publishInfoDto.uId},  #{publishInfoDto.isValid}, #{publishInfoDto.direction}, #{publishInfoDto.goTime})
+    </insert>
+
+</mapper>

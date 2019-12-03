@@ -21,9 +21,15 @@ public class PublishInfoVo extends BaseVO {
 
     private String title;
 
-    private String desc;
+    private String content;
 
-    private Long uId;
+    private String uId;
+
+    private Integer isValid;
+
+    private String direction; // 目的地
+
+    private String goTime;
 
     public Long getId() {
         return id;
@@ -65,21 +71,43 @@ public class PublishInfoVo extends BaseVO {
         this.title = title;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getContent() {
+        return content;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Long getuId() {
+    public String getuId() {
         return uId;
     }
 
-    public void setuId(Long uId) {
+    public void setuId(String uId) {
         this.uId = uId;
     }
 
+    public Integer getIsValid() {
+        return isValid;
+    }
 
+    public void setIsValid(Integer isValid) {
+        this.isValid = isValid;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public String getGoTime() {
+        return goTime;
+    }
+
+    public void setGoTime(String goTime) {
+        this.goTime = goTime;
+    }
 }

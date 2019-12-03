@@ -1,4 +1,4 @@
-package com.bjyc.inter.util;
+package com.bjyc.inter.util.http;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +28,9 @@ public class HttpRequest {
         try {
             String urlNameString = url + "?" + param;
             URL realUrl = new URL(urlNameString);
+            if ("https".equalsIgnoreCase(realUrl.getProtocol())) {
+                SslUtils.ignoreSsl();
+            }
             // 打开和URL之间的连接
             URLConnection connection = realUrl.openConnection();
             // 设置通用的请求属性
@@ -81,6 +84,9 @@ public class HttpRequest {
         String result = "";
         try {
             URL realUrl = new URL(url);
+            if ("https".equalsIgnoreCase(realUrl.getProtocol())) {
+                SslUtils.ignoreSsl();
+            }
             // 打开和URL之间的连接
             URLConnection conn = realUrl.openConnection();
             // 设置通用的请求属性

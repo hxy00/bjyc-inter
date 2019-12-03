@@ -29,11 +29,20 @@ public class PublishInfoDto extends RestPageQueryReqDTO {
     @ApiModelProperty(name = "title", value = "title", example = "")
     private String title;
 
-    @ApiModelProperty(name = "desc", value = "desc", example = "")
-    private String desc;
+    @ApiModelProperty(name = "content", value = "content", example = "")
+    private String content;
 
-    @ApiModelProperty(name = "uId", value = "desc", example = "")
-    private Long uId;
+    @ApiModelProperty(name = "uId", value = "uId", example = "")
+    private String uId;
+
+    @ApiModelProperty(name = "isValid", value = "isValid", example = "")
+    private Integer isValid;
+
+    @ApiModelProperty(name = "direction", value = "方向", example = "")
+    private String direction;
+
+    @ApiModelProperty(name = "goTime", value = "出行时间", example = "")
+    private String goTime;
 
     public Long getId() {
         return id;
@@ -75,21 +84,43 @@ public class PublishInfoDto extends RestPageQueryReqDTO {
         this.title = title;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getContent() {
+        return content;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Long getuId() {
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public String getuId() {
         return uId;
     }
 
-    public void setuId(Long uId) {
+    public void setuId(String uId) {
         this.uId = uId;
     }
 
+    public Integer getIsValid() {
+        return isValid;
+    }
 
+    public void setIsValid(Integer isValid) {
+        this.isValid = isValid;
+    }
+
+    public String getGoTime() {
+        return goTime;
+    }
+
+    public void setGoTime(String goTime) {
+        this.goTime = goTime;
+    }
 }

@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.bjyc.inter.pojo.dto.ReturnObject;
 import com.bjyc.inter.pojo.dto.UserInfoDto;
 import com.bjyc.inter.sv.IUserInfoSv;
-import com.bjyc.inter.util.HttpRequest;
+import com.bjyc.inter.util.http.HttpRequest;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.util.StringUtil;
 import org.apache.commons.collections4.MapUtils;

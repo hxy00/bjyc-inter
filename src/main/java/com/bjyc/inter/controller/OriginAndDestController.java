@@ -27,7 +27,7 @@ public class OriginAndDestController {
     private IOriginAndDestSv iOriginAndDestSv;
 
     /**
-     * 获取用户信息
+     * 获取用户方位信息
      * @param originAndDestDto
      * @return
      */
@@ -36,6 +36,27 @@ public class OriginAndDestController {
         try {
             PageInfo<?> pageInfo = iOriginAndDestSv.getOriginAndDestPage(originAndDestDto);
             return new ReturnObject(ReturnObject.SuccessEnum.success, "获取数据获取成功", pageInfo, 1);
+        } catch (Exception e) {
+            logger.error("获取数据失败：" + e.getMessage());
+            return new ReturnObject(ReturnObject.SuccessEnum.fail, "获取数据获取失败：" + e.getMessage(), null, 1);
+        }
+    }
+
+
+
+    /**
+     * 获取用户信息
+     * @param originAndDestDto
+     * @return
+     */
+    @RequestMapping("/getOriginAndDest")
+    public ReturnObject getOriginAndDest(@Valid OriginAndDestDto originAndDestDto) {
+        try {
+            List<Map<String, Object>> lstData = iOriginAndDestSv.getOriginAndDestList(originAndDestDto);
+            if (CollectionUtils.isEmpty(lstData)){
+                return new ReturnObject(ReturnObject.SuccessEnum.fail, "获取数据获取失败：没有获取到数据", null, 1);
+            }
+            return new ReturnObject(ReturnObject.SuccessEnum.success, "获取数据获取成功", lstData, 1);
         } catch (Exception e) {
             logger.error("获取数据失败：" + e.getMessage());
             return new ReturnObject(ReturnObject.SuccessEnum.fail, "获取数据获取失败：" + e.getMessage(), null, 1);
