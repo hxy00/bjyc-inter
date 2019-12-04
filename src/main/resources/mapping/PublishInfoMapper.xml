@@ -31,4 +31,8 @@
         values (NOW(), #{publishInfoDto.publishedAt}, #{publishInfoDto.cellPhone}, #{publishInfoDto.title}, #{publishInfoDto.content}, #{publishInfoDto.uId},  #{publishInfoDto.isValid}, #{publishInfoDto.direction}, #{publishInfoDto.goTime})
     </insert>
 
+    <delete id="delete" parameterType="com.bjyc.inter.pojo.dto.PublishInfoDto">
+          delete from tbl_publish_info where id = #{publishInfoDto.id} and uId = #{publishInfoDto.uId}
+    </delete>
+
 </mapper>
