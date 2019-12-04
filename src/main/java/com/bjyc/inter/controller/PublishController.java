@@ -74,7 +74,7 @@ public class PublishController {
     @RequestMapping("/delete")
     public ReturnObject delete(@Valid PublishInfoDto publishInfoDto) {
         try {
-            if(null == publishInfoDto.getId() && StringUtil.isEmpty(publishInfoDto.getuId())) {
+            if(null == publishInfoDto.getId() || StringUtil.isEmpty(publishInfoDto.getuId())) {
                 return new ReturnObject(ReturnObject.SuccessEnum.fail, "删除数据失败，参数为空[id]或[uId]","", 1);
             }
             int retInt = iPublishInfoSv.delete(publishInfoDto);
