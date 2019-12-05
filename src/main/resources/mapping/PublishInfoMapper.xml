@@ -29,8 +29,8 @@
     </select>
 
     <insert id="save" parameterType="com.bjyc.inter.pojo.dto.PublishInfoDto">
-        insert into tbl_publish_info(createdAt, publishedAt, cellPhone, title, content, uId, isValid, direction, goTime)
-        values (NOW(), #{publishInfoDto.publishedAt}, #{publishInfoDto.cellPhone}, #{publishInfoDto.title}, #{publishInfoDto.content}, #{publishInfoDto.uId},  #{publishInfoDto.isValid}, #{publishInfoDto.direction}, #{publishInfoDto.goTime})
+        insert into tbl_publish_info(createdAt, publishedAt, cellPhone, title, content, uId, direction, goTime)
+        values (NOW(), #{publishInfoDto.publishedAt}, #{publishInfoDto.cellPhone}, #{publishInfoDto.title}, #{publishInfoDto.content}, #{publishInfoDto.uId},  #{publishInfoDto.direction}, #{publishInfoDto.goTime})
     </insert>
 
     <delete id="delete" parameterType="com.bjyc.inter.pojo.dto.PublishInfoDto">

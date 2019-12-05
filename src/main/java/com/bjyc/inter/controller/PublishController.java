@@ -39,7 +39,6 @@ public class PublishController {
 
         try {
             publishInfoDto.setPublishedAt(new Date());
-            publishInfoDto.setIsValid(1); // 0无效，1有效
             int saveInt = iPublishInfoSv.save(publishInfoDto);
             if (saveInt > 0) {
                 return new ReturnObject(ReturnObject.SuccessEnum.success, "保存成功", publishInfoDto, 1);

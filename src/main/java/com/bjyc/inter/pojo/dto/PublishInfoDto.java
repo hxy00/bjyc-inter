@@ -35,8 +35,8 @@ public class PublishInfoDto extends RestPageQueryReqDTO {
     @ApiModelProperty(name = "uId", value = "uId", example = "")
     private String uId;
 
-    @ApiModelProperty(name = "isValid", value = "isValid", example = "")
-    private Integer isValid;
+//    @ApiModelProperty(name = "isValid", value = "isValid", example = "")
+//    private Integer isValid;
 
     @ApiModelProperty(name = "direction", value = "方向", example = "")
     private String direction;
@@ -106,14 +106,6 @@ public class PublishInfoDto extends RestPageQueryReqDTO {
 
     public void setuId(String uId) {
         this.uId = uId;
-    }
-
-    public Integer getIsValid() {
-        return isValid;
-    }
-
-    public void setIsValid(Integer isValid) {
-        this.isValid = isValid;
     }
 
     public String getGoTime() {
