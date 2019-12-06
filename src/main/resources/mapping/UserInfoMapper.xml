@@ -32,4 +32,18 @@
         #{userInfoDto.province}, #{userInfoDto.city}, now(), #{userInfoDto.lang}, #{userInfoDto.openId})
     </insert>
 
+    <update id="update" parameterType="com.bjyc.inter.pojo.dto.UserInfoDto">
+        update tbl_user_info
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userInfoDto.nickName != null and userInfoDto.nickName != ''">nickName=#{userInfoDto.nickName},</if>
+            <if test="userInfoDto.avatarUrl != null and userInfoDto.avatarUrl != ''">avatarUrl=#{userInfoDto.avatarUrl},</if>
+            <if test="userInfoDto.gender != null">gender=#{userInfoDto.gender},</if>
+            <if test="userInfoDto.country != null and userInfoDto.country != ''">country=#{userInfoDto.country},</if>
+            <if test="userInfoDto.province != null and userInfoDto.province != ''">province=#{userInfoDto.province},</if>
+            <if test="userInfoDto.city != null and userInfoDto.city != ''">city=#{userInfoDto.city},</if>
+            <if test="userInfoDto.lang != null and userInfoDto.lang != ''">lang=#{userInfoDto.lang},</if>
+        </trim>
+        where openId = #{userInfoDto.openId}
+    </update>
+
 </mapper>

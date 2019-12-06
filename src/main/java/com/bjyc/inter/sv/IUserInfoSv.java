@@ -14,4 +14,6 @@ public interface IUserInfoSv {
     Integer saveUserInfo(UserInfoDto userInfoDto) throws Exception ;
 
     Map<String, Object> queryOpenIdIsExist(String openId) throws Exception;
+
+    Integer update(UserInfoDto userInfoDto) throws Exception ;
 }

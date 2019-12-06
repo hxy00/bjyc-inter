@@ -26,7 +26,7 @@ public class UserInfoVo extends BaseVO {
 
     private String lang;
 
-    private Date createAt;
+    private Date createAt, updateAt;
     private String openId;
 
     public Long getId() {
@@ -111,5 +111,13 @@ public class UserInfoVo extends BaseVO {
 
     public void setOpenId(String openId) {
         this.openId = openId;
+    }
+
+    public Date getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
     }
 }

@@ -38,11 +38,15 @@ public class UserInfoDto extends RestPageQueryReqDTO {
     @ApiModelProperty(name = "lang", value = "lang", example = "")
     private String lang;
 
-    @ApiModelProperty(name = "createAt", value = "创建时间createAt", example = "")
+    @ApiModelProperty(name = "createAt", value = "创建时间", example = "")
     private Date createAt;
 
     @ApiModelProperty(name = "openId", value = "openId", example = "")
     private String openId;
+
+    @ApiModelProperty(name = "updateAt", value = "更新时间", example = "")
+    private Date updateAt;
+
 
     public Long getId() {
         return id;
@@ -123,5 +127,13 @@ public class UserInfoDto extends RestPageQueryReqDTO {
 
     public void setOpenId(String openId) {
         this.openId = openId;
+    }
+
+    public Date getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Date updateAt) {
+        this.updateAt = updateAt;
     }
 }

@@ -14,4 +14,7 @@ public interface IUserInfoMapper {
     List<Map<String, Object>> getListMap(@Param("userInfoDto") UserInfoDto userInfoDto);
 
     Integer saveUserInfo(@Param("userInfoDto") UserInfoDto userInfoDto);
+
+    Integer update(@Param("userInfoDto") UserInfoDto userInfoDto);
+
 }

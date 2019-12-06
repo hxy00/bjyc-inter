@@ -68,35 +68,43 @@ public class UserInfoController {
     public ReturnObject register(@Valid UserInfoDto userInfoDto) {
         if (null == userInfoDto) {
             logger.error("用户参数为空");
-            return new ReturnObject(ReturnObject.SuccessEnum.fail, "用户参数为空", null, 1);
+            return new ReturnObject(ReturnObject.SuccessEnum.fail, "用户参数为空", userInfoDto, 1);
         }
         String openId = userInfoDto.getOpenId();
         if (StringUtil.isEmpty(openId)) {
             logger.error("openId参数为空");
-            return new ReturnObject(ReturnObject.SuccessEnum.fail, "openId参数为空", null, 1);
+            return new ReturnObject(ReturnObject.SuccessEnum.fail, "openId参数为空", userInfoDto, 1);
         }
         //查询数据库中该openid是否存在
         Map<String, Object> userMap = null;
         try {
             userMap = iUserInfoSv.queryOpenIdIsExist(openId);
         } catch (Exception e) {
-            logger.error("查询数据出错");
-            return new ReturnObject(ReturnObject.SuccessEnum.fail, "查询数据出错", null, 1);
+            logger.error("查询数据是否存在出错:{}", e.getMessage());
+            return new ReturnObject(ReturnObject.SuccessEnum.fail, "查询数据出错:" + e.getMessage(), userInfoDto, 1);
         }
 
         if (MapUtils.isEmpty(userMap)) { //用户openid未存在
             try {
                 int retInt = iUserInfoSv.saveUserInfo(userInfoDto);
                 logger.info("保存用户信息，返回：" + retInt);
-                if (retInt <= 0) {
-                    return new ReturnObject(ReturnObject.SuccessEnum.fail, "用户注册失败", null, 1);
+                if (retInt > 0) {
+                    return new ReturnObject(ReturnObject.SuccessEnum.success, "用户注册成功", userInfoDto, 1);
                 }
             } catch (Exception e) {
                 logger.error("保存用户数据出错：" + e.getMessage());
-                return new ReturnObject(ReturnObject.SuccessEnum.fail, "用户注册失败：" + e.getMessage(), null, 1);
+                return new ReturnObject(ReturnObject.SuccessEnum.fail, "用户注册失败：" + e.getMessage(), userInfoDto, 1);
+            }
+        } else { // 存在
+            try {
+                iUserInfoSv.update(userInfoDto);
+                return new ReturnObject(ReturnObject.SuccessEnum.success, "用户注册成功", userInfoDto, 1);
+            } catch (Exception e) {
+                logger.error("修改用户数据出错：" + e.getMessage());
+                return new ReturnObject(ReturnObject.SuccessEnum.fail, "用户注册失败：" + e.getMessage(), userInfoDto, 1);
             }
         }
-        return new ReturnObject(ReturnObject.SuccessEnum.success, "用户注册成功", userInfoDto, 1);
+        return new ReturnObject(ReturnObject.SuccessEnum.fail, "用户注册失败", userInfoDto, 1);
     }
 
     /**

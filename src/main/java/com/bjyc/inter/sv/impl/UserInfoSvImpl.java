@@ -49,4 +49,9 @@ public class UserInfoSvImpl implements IUserInfoSv {
         Map<String, Object> row = getUserInfo(userInfoDto);
         return row;
     }
+
+    @Override
+    public Integer update(UserInfoDto userInfoDto) throws Exception {
+        return iUserInfoMapper.update(userInfoDto);
+    }
 }
