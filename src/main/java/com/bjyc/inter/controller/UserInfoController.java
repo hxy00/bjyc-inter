@@ -3,6 +3,7 @@ package com.bjyc.inter.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.bjyc.inter.pojo.dto.ReturnObject;
 import com.bjyc.inter.pojo.dto.UserInfoDto;
+import com.bjyc.inter.pojo.dto.WxAuthDto;
 import com.bjyc.inter.sv.IUserInfoSv;
 import com.bjyc.inter.util.http.HttpRequest;
 import com.github.pagehelper.PageInfo;
@@ -26,6 +27,9 @@ public class UserInfoController {
     @Autowired
     private IUserInfoSv iUserInfoSv;
 
+    @Autowired
+    private WxAuthDto wxAuthDto;
+
     /**
      * 获取openId
      * @param code
@@ -38,18 +42,11 @@ public class UserInfoController {
             return new ReturnObject(ReturnObject.SuccessEnum.fail, "参数为空", null, 1);
         }
         try {
-            //小程序唯一标识   (在微信小程序管理后台获取)
-            String appId = "wx2308094fa8c1c0cf";
-            //小程序的 app secret (在微信小程序管理后台获取)
-            String appSecret = "dd5678f3c7509561159beee1da97c5ef";
-            //授权（必填）
-            String grant_type = "authorization_code";
-
             //////////////// 1、向微信服务器 使用登录凭证 code 获取 session_key 和 openid ////////////////
             //请求参数
-            String params = "appid=" + appId + "&secret=" + appSecret + "&js_code=" + code + "&grant_type=" + grant_type;
+            String params = "appid=" + wxAuthDto.getAppId() + "&secret=" + wxAuthDto.getAppSecret() + "&js_code=" + code + "&grant_type=" + wxAuthDto.getGrantType();
             //发送请求
-            String result = HttpRequest.sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
+            String result = HttpRequest.sendGet(wxAuthDto.getGrantUrl(), params);
             //解析相应内容（转换成json对象）
             JSONObject json = JSONObject.parseObject(result);
             return new ReturnObject(ReturnObject.SuccessEnum.success, "获取openId成功", json, 1);

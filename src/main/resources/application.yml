@@ -30,3 +30,11 @@ spring:
 logging:
   level:
     com.bjyc.inter: debug
+
+
+wx:
+  auth:
+    appId: wx2308094fa8c1c0cf
+    appSecret: dd5678f3c7509561159beee1da97c5ef
+    grantType: authorization_code
+    grantUrl: https://api.weixin.qq.com/sns/jscode2session
