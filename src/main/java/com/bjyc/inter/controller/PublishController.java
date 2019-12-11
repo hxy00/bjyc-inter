@@ -87,4 +87,28 @@ public class PublishController {
             return new ReturnObject(ReturnObject.SuccessEnum.fail, "删除数据失败：" + e.getMessage(),"", 1);
         }
     }
+
+    /**
+     * 修改
+     * @param publishInfoDto
+     * @return
+     */
+    @RequestMapping("/setValid")
+    public ReturnObject setValid(@Valid PublishInfoDto publishInfoDto) {
+        try {
+            if(null == publishInfoDto.getId() || StringUtil.isEmpty(publishInfoDto.getuId())) {
+                return new ReturnObject(ReturnObject.SuccessEnum.fail, "修改失败，参数为空[id]或[uId]","", 1);
+            }
+            publishInfoDto.setIsValid(0);
+            int retInt = iPublishInfoSv.update(publishInfoDto);
+            if(retInt > 0) {
+                return new ReturnObject(ReturnObject.SuccessEnum.success, "修改成功", "", 1);
+            } else {
+                return new ReturnObject(ReturnObject.SuccessEnum.fail, "修改失败","", 1);
+            }
+        } catch (Exception e) {
+            logger.error("删除数据失败：{}", e.getMessage());
+            return new ReturnObject(ReturnObject.SuccessEnum.fail, "修改失败：" + e.getMessage(),"", 1);
+        }
+    }
 }

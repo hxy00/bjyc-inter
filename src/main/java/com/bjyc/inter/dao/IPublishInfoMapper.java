@@ -16,4 +16,6 @@ public interface IPublishInfoMapper {
     Integer save(@Param("publishInfoDto") PublishInfoDto publishInfoDto);
 
     Integer delete(@Param("publishInfoDto") PublishInfoDto publishInfoDto);
+
+    Integer update(@Param("publishInfoDto") PublishInfoDto publishInfoDto);
 }

@@ -47,4 +47,8 @@ public class PublishInfoSvImpl implements IPublishInfoSv {
         return iPublishInfoMapper.delete(publishInfoDto);
     }
 
+    @Override
+    public Integer update(PublishInfoDto publishInfoDto) throws Exception {
+        return iPublishInfoMapper.update(publishInfoDto);
+    }
 }

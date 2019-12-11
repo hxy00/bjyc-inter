@@ -35,14 +35,14 @@ public class PublishInfoDto extends RestPageQueryReqDTO {
     @ApiModelProperty(name = "uId", value = "uId", example = "")
     private String uId;
 
-//    @ApiModelProperty(name = "isValid", value = "isValid", example = "")
-//    private Integer isValid;
-
     @ApiModelProperty(name = "direction", value = "方向", example = "")
     private String direction;
 
     @ApiModelProperty(name = "goTime", value = "出行时间", example = "")
     private String goTime;
+
+    @ApiModelProperty(name = "isValid", value = "是否有效（0无效，1有效）", example = "")
+    private Integer isValid;
 
     public Long getId() {
         return id;
@@ -114,5 +114,13 @@ public class PublishInfoDto extends RestPageQueryReqDTO {
 
     public void setGoTime(String goTime) {
         this.goTime = goTime;
+    }
+
+    public Integer getIsValid() {
+        return isValid;
+    }
+
+    public void setIsValid(Integer isValid) {
+        this.isValid = isValid;
     }
 }

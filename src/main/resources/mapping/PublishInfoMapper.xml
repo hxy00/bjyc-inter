@@ -4,7 +4,7 @@
 
     <!--goTime>now(), 有效1，否则失效0-->
     <sql id="select_all_column">
-        SELECT t.*, case when DATE_FORMAT(t.goTime, '%Y-%c-%d %H:%i') > now() then 1 else 0 end as isValid,
+        SELECT t.*, case when DATE_FORMAT(t.goTime, '%Y-%c-%d %H:%i') > now() then 1 else 0 end as isTimeOut,
             u.nickName, u.avatarUrl FROM  tbl_publish_info t left join tbl_user_info u on t.uId = u.openId
     </sql>
 
@@ -36,5 +36,9 @@
     <delete id="delete" parameterType="com.bjyc.inter.pojo.dto.PublishInfoDto">
           delete from tbl_publish_info where id = #{publishInfoDto.id} and uId = #{publishInfoDto.uId}
     </delete>
+
+    <update id="update" parameterType="com.bjyc.inter.pojo.dto.PublishInfoDto">
+        update tbl_publish_info set isValid = #{publishInfoDto.isValid} where id = #{publishInfoDto.id} and uId = #{publishInfoDto.uId}
+    </update>
 
 </mapper>

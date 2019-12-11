@@ -25,7 +25,7 @@ public class PublishInfoVo extends BaseVO {
 
     private String uId;
 
-//    private Integer isValid;
+    private Integer isValid;
 
     private String direction; // 目的地
 
@@ -101,5 +101,13 @@ public class PublishInfoVo extends BaseVO {
 
     public void setGoTime(String goTime) {
         this.goTime = goTime;
+    }
+
+    public Integer getIsValid() {
+        return isValid;
+    }
+
+    public void setIsValid(Integer isValid) {
+        this.isValid = isValid;
     }
 }
